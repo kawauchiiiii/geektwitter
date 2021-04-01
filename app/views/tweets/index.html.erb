@@ -1,0 +1,55 @@
+<div class="main">
+<div class="main_area">
+
+<div class="tweets-container">
+
+
+  <% @tweets.each do |t| %>
+
+    <div class="tweet">
+    
+      <a href="/users/<%= t.user.id %>"><%= t.user.name %></a>
+      <br>
+      <%= image_tag t.image_url, size: "250x200" if t.image? %>
+      <br>
+      <%= t.body %>
+      
+      <br>
+
+      <% if user_signed_in? %>
+        <% if current_user.already_liked?(t) %>
+          <%= button_to tweet_like_path(id: t.id, tweet_id: t.id), method: :delete do %>
+            <i class="fas fa-heart"></i><%= t.likes.count %>
+        <% end %>
+
+      <% else %>
+          <%= button_to tweet_likes_path(id: t.id, tweet_id: t.id), method: :post do %>
+            <i class="far fa-heart"></i><%= t.likes.count %>
+          <% end %>
+      <% end %>
+      <% else %>
+      <i class="far fa-heart"></i><%= t.likes.count %>
+      <% end %>
+      
+      
+
+      
+
+      <%= link_to "詳細へ", tweet_path(t.id) %>
+      <% if user_signed_in? && current_user.id == t.user_id %>  
+      　 <%= link_to "編集する", edit_tweet_path(t.id) %>
+         <%= button_to "削除する", tweet_path(t.id), method: :delete %>
+　　  <% end %> 
+
+    </div>
+
+  <% end %>
+
+
+</div>
+
+
+
+
+</div>
+</div>

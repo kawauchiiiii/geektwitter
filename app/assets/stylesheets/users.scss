@@ -1,0 +1,16 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+ .user{
+    margin:10px auto;
+    width:980px;
+    height:1000px;
+    position:relative;
+    z-index:20
+
+}
+    
+.user_area {
+    position:absolute;
+}

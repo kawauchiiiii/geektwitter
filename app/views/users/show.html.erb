@@ -1,0 +1,29 @@
+<div class="user">
+<div class="user_area">
+
+<div>Name: <%= @user.name %></div>
+<div>Mail : <%= @user.email %></div>
+<div>Profile : <%= @user.profile %></div>
+
+<% if current_user.id == @user.id %>
+  <%= link_to "編集する", edit_user_registration_path %>
+<% end %>
+<br>
+<br>
+<h4>投稿一覧</h4>
+<% @user.tweets.each do |t| %>
+  <%= t.body %>
+<% end %>
+
+<h4>いいね一覧</h4>
+<% @user.liked_tweets.each do |t| %>
+  <%= t.user.name %>
+  <br>
+  <%= t.body %>
+  <br>
+<% end %>
+<br>
+<p><%= link_to "Tweet一覧に戻る", tweets_path %></p>
+
+</div>
+</div>

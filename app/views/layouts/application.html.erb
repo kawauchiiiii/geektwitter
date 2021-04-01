@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GeektwitterKai</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    
+   
+  </head>
+
+  <body>
+      <header>
+        <h1><%= link_to "GeekTwitter", tweets_path %></h1>
+        <div class="header-list">
+        <ul>
+        <li>
+        <% if user_signed_in? %>
+        <%= link_to "マイページ", user_path(current_user.id) %>　
+        <% end %>
+        </li>
+        
+        <li><%= link_to "新規投稿",new_tweet_path %>
+        </li>
+        <li>
+        <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
+        </li>
+        </ul>
+        </div>
+      </header>
+      
+      <main>
+        <%= yield %>
+      </main>
+
+  </body>
+</html>
